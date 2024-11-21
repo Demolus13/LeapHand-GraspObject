@@ -1,6 +1,8 @@
 # itr-leaphand-graspobject
 This repository contains codes required for the guided assignment for ME 639 Introduction to Robotics course at IIT Gandhinagar. The task was to enable a LEAP Hand to hold on to an object based on the 6D live pose of the object.
 
+[Demonstration](https://github.com/user-attachments/assets/6be2946b-16b2-4c7f-919d-9f55d8160b02)
+
 **Required transformations:**  
 ![Transformations](Transformations.jpg "These are the required transformations")
 ![MeshLabss](MeshLabss.jpg "This is a screenshot from the MeshLab software showing palm_lower.stl")
