@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mujoco model="Leap Hand">
+  <compiler angle="radian"/>
+  <option timestep="0.0002" integrator="Euler">
+    <flag contact="disable" gravity="disable"/>
+  </option>
+
+  <asset>
+    <mesh name="palm_lower" file="palm_lower.stl"/>
+    <mesh name="mcp_joint" file="mcp_joint.stl"/>
+    <mesh name="pip" file="pip.stl"/>
+    <mesh name="dip" file="dip.stl"/>
+    <mesh name="fingertip" file="fingertip.stl"/>
+    <mesh name="thumb_dip" file="thumb_dip.stl"/>
+    <mesh name="thumb_fingertip" file="thumb_fingertip.stl"/>
+    <mesh name="thumb_pip" file="thumb_pip.stl"/>
+  </asset>
+
+  <worldbody>
+    <body name="palm" pos="0 0 0">
+    <geom name="palm" pos="-0.0200952 0.0257578 -0.0347224" type="mesh" rgba="0.603922 0.14902 0.14902 1" mesh="palm_lower"/>
+    <body name="pip_4" pos="-0.024188 0.03574396 -0.010146" quat="0.707107 0 0.707107 0">
+        <joint name="12" pos="0 0 0" axis="0 0 -1" range="-0.349 2.094" damping="0.1"/>
+        <geom pos="-0.00535664 0.0003 0.000784034" quat="0.5 -0.5 -0.5 -0.5" type="mesh" rgba="0.74902 0.74902 0.74902 1" mesh="pip"/>
+        <body name="thumb_pip_4" pos="0 0.0143 -0.013" quat="0.5 0.5 -0.5 0.5">
+          <joint name="13" pos="0 0 0" axis="0 0 -1" range="-0.47 2.443" damping="0.1"/>
+          <geom pos="0.0119619 0 -0.0158526" quat="0.707107 0.707107 0 0" type="mesh" rgba="0.866667 0.866667 0.0509804 1" mesh="thumb_pip"/>
+          <body name="thumb_dip_4" pos="0 0.0145 -0.017" quat="0.707107 -0.707107 0 0">
+            <joint name="14" pos="0 0 0" axis="0 0 -1" range="-1.20 1.90" damping="0.1"/>
+            <geom pos="0.0439687 0.057953 -0.00862868" quat="1 0 0 0" type="mesh" rgba="0.866667 0.866667 0.0509804 1" mesh="thumb_dip"/>
+            <body name="thumb_fingertip_4" pos="0 0.0466 0.0002" quat="0 0 0 1">
+              <joint name="15" pos="0 0 0" axis="0 0 -1" range="-1.34 1.88" damping="0.1"/>
+              <geom pos="0.0625595 0.0784597 0.0489929" type="mesh" rgba="0.603922 0.14902 0.14902 1" mesh="thumb_fingertip"/>
+              <site name="contact_thumb" pos="-0.01 -0.048 -0.015" quat="0 0 0 1"/>
+              <site name="contact_thumb_end" pos="-0.01 -0.064 -0.015" quat="0 0 0 1"/>
+            </body>
+          </body>
+        </body>
+      </body>
+
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="motor_12" joint="12"/>
+    <motor name="motor_13" joint="13"/>
+    <motor name="motor_14" joint="14"/>
+    <motor name="motor_15" joint="15"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 0" ctrl="0.5 0.5 0.5 0.5"/>
+  </keyframe>
+</mujoco>

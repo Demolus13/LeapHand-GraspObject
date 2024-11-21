@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mujoco model="Leap Hand">
+  <compiler angle="radian"/>
+  <option timestep="0.0002" integrator="Euler">
+    <flag contact="disable" gravity="disable"/>
+  </option>
+
+  <asset>
+    <mesh name="palm_lower" file="palm_lower.stl"/>
+    <mesh name="mcp_joint" file="mcp_joint.stl"/>
+    <mesh name="pip" file="pip.stl"/>
+    <mesh name="dip" file="dip.stl"/>
+    <mesh name="fingertip" file="fingertip.stl"/>
+    <mesh name="thumb_dip" file="thumb_dip.stl"/>
+    <mesh name="thumb_fingertip" file="thumb_fingertip.stl"/>
+    <mesh name="thumb_pip" file="thumb_pip.stl"/>
+  </asset>
+
+  <worldbody>
+    <body name="palm" pos="0 0 0">
+    <geom name="palm" pos="-0.0200952 0.0257578 -0.0347224" type="mesh" rgba="0.603922 0.14902 0.14902 1" mesh="palm_lower"/>
+    <body name="mcp_joint" pos="-0.00709525 0.0230578 -0.0187224" quat="0.5 0.5 0.5 -0.5">
+      <joint name="1" pos="0 0 0" axis="0 0 -1" range="-0.314 2.23"/>
+      <geom pos="0.0084069 0.00776624 0.0146574" quat="1 0 0 0" type="mesh" rgba="0.866667 0.866667 0.0509804 1" mesh="mcp_joint"/>
+      <body name="pip" pos="-0.0122 0.0381 0.0145" quat="0.5 -0.5 -0.5 0.5">
+        <joint name="0" pos="0 0 0" axis="0 0 -1" range="-1.047 1.047"/>
+        <geom pos="0.00964336 0.0003 0.000784034" quat="0.5 -0.5 -0.5 -0.5" type="mesh" rgba="0.74902 0.74902 0.74902 1" mesh="pip"/>
+        <body name="dip" pos="0.015 0.0143 -0.013" quat="0.5 0.5 -0.5 0.5">
+          <joint name="2" pos="0 0 0" axis="0 0 -1" range="-0.506 1.885"/>
+          <geom pos="0.0211334 -0.00843212 0.00978509" quat="0 -1 0 0" type="mesh" rgba="0.866667 0.866667 0.0509804 1" mesh="dip"/>
+          <body name="fingertip" pos="-4.08806e-09 -0.0361 0.0002">
+            <joint name="3" pos="0 0 0" axis="0 0 -1" range="-0.366 2.042"/>
+            <geom pos="0.0132864 -0.00611424 0.0145" quat="0 1 0 0" type="mesh" rgba="0.866667 0.866667 0.0509804 1" mesh="fingertip"/>
+            <site name="contact_index" pos="-0.01 -0.048 0.015" quat="0.5 -0.5 0.5 -0.5"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="motor_1" joint="1"/>
+    <motor name="motor_0" joint="0"/>
+    <motor name="motor_2" joint="2"/>
+    <motor name="motor_3" joint="3"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 0" ctrl="0 0 0 0"/>
+  </keyframe>
+</mujoco>
